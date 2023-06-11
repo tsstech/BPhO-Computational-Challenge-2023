@@ -21,7 +21,6 @@ def mercury(x,y,pen):
     pen.hideturtle()
     pen.penup()
     pen.setpos(x+3,y)
-    pen.left(90)
     pen.pendown()
     # setting pen colors
     pen.pencolor("#dbd8d0")
@@ -36,7 +35,6 @@ def venus(x,y,pen):
     pen.hideturtle()
     pen.penup()
     pen.setpos(x+7,y)
-    pen.left(90)
     pen.pendown()
     # setting pen colors
     pen.pencolor("#f09e07")
@@ -51,7 +49,6 @@ def earth(x,y,pen):
     pen.hideturtle()
     pen.penup()
     pen.setpos(x+7,y)
-    pen.left(90)
     pen.pendown()
     # setting pen colors
     pen.pencolor("#133e9c")
@@ -87,7 +84,6 @@ def mars(x,y,pen):
     pen.hideturtle()
     pen.penup()
     pen.setpos(x+5,y)
-    pen.left(90)
     pen.pendown()
     # setting pen colors
     pen.pencolor("#ff171f")
@@ -101,8 +97,7 @@ def jupiter(x,y,pen):
     #setting starting position
     pen.hideturtle()
     pen.penup()
-    pen.setpos(x+20,y)
-    pen.left(90)
+    pen.setpos(x+10,y)
     pen.pendown()
     # setting pen colors & width
     pen.width(1)
@@ -110,40 +105,36 @@ def jupiter(x,y,pen):
     pen.fillcolor("#c78454")
     # drawing planet
     pen.begin_fill()
-    pen.circle(20)
+    pen.circle(10)
     pen.end_fill()
     # drawing detail on planet
     pen.width(2)
     pen.pencolor("#cf9a74")
     pen.left(90)
-    pen.penup()
-    pen.forward(1)
-    pen.pendown()
-    pen.forward(38)
+    pen.forward(19)
 
     pen.width(1)
     pen.pencolor("#edc09f")
     pen.penup()
     pen.right(90)
-    pen.forward(10)
+    pen.forward(4)
     pen.right(90)
-    pen.forward(3)
+    pen.forward(1)
     pen.pendown()
-    pen.forward(34)
+    pen.forward(19)
 
-    pen.width(4)
+    pen.width(3)
     pen.pencolor("#6e3409")
     pen.penup()
-    pen.setpos(x,y-8)
+    pen.setpos(x,y-4)
     pen.pendown()
-    pen.forward(3)
+    pen.forward(2)
 
 def saturn(x,y,pen):
     #setting starting position
     pen.hideturtle()
     pen.penup()
-    pen.setpos(x+18,y)
-    pen.left(90)
+    pen.setpos(x+9,y)
     pen.pendown()
     # setting pen colors & width
     pen.width(1)
@@ -151,22 +142,22 @@ def saturn(x,y,pen):
     pen.fillcolor("#d69b6f")
     # drawing planet
     pen.begin_fill()
-    pen.circle(18)
+    pen.circle(9)
     pen.end_fill()
     
     # setting up to draw ring
     pen.width(2)
     pen.color("#824416")
     pen.penup()
-    pen.setpos(x+18,y+4)
+    pen.setpos(x+9,y+4)
     pen.pendown()
     pen.right(90)
     # drawing ring
-    pen.forward(4)
+    pen.forward(2)
     for i in range(10):
         pen.right(18)
         pen.forward(0.8)
-    pen.forward(42)
+    pen.forward(20)
     for i in range(10):
         pen.right(18)
         pen.forward(0.8)
@@ -175,30 +166,28 @@ def uranus(x,y,pen):
     #setting starting position
     pen.hideturtle()
     pen.penup()
-    pen.setpos(x+15,y)
-    pen.left(90)
+    pen.setpos(x+7,y)
     pen.pendown()
     # setting pen colors
     pen.pencolor("#afe0f0")
     pen.fillcolor("#afe0f0")
     # drawing planet
     pen.begin_fill()
-    pen.circle(15)
+    pen.circle(7)
     pen.end_fill()
 
 def neptune(x,y,pen):
     #setting starting position
     pen.hideturtle()
     pen.penup()
-    pen.setpos(x+14,y)
-    pen.left(90)
+    pen.setpos(x+6,y)
     pen.pendown()
     # setting pen colors
     pen.pencolor("#184a87")
     pen.fillcolor("#184a87")
     # drawing planet
     pen.begin_fill()
-    pen.circle(14)
+    pen.circle(6)
     pen.end_fill()
 
 

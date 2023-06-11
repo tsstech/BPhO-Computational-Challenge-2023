@@ -13,8 +13,30 @@ functions = [sun,mercury,venus,earth,mars,jupiter,saturn,uranus,neptune]
 pens = [sunPen,mercuryPen,venusPen,earthPen,marsPen,jupiterPen,saturnPen,uranusPen,neptunePen]
 
 
-### SET UP THE SCREEN ###
 
 turtle.bgcolor("#000000") # color screen black
 
-functions[0](0,0,pens[0]) # draw sun
+
+for pen in pens:
+    ## set all pen colors as white
+    pen.pencolor("#ffffff")
+    ## hide all pens
+    pen.hideturtle()
+
+## draw the orbits
+for i in range(1,9):
+    ## set position to draw orbit
+    pens[i].penup()
+    pens[i].forward(distance[i]/9.9e6)
+    pens[i].setheading(90)
+    pens[i].pendown()
+    ## draw orbit
+    pens[i].circle(distance[i]/9.9e6)
+    ## if its an outer planet, draw the planet
+    if i > 4:
+        functions[i](pens[i].xcor(),pens[i].ycor(),pens[i])
+
+    
+
+
+
