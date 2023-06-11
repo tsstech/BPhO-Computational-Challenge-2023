@@ -11,3 +11,10 @@ radius =[432690,1516,3760.4,3958.8,2106.1,43441,36184,15759,15299]
 functions = [sun,mercury,venus,earth,mars,jupiter,saturn,uranus,neptune]
 # pens
 pens = [sunPen,mercuryPen,venusPen,earthPen,marsPen,jupiterPen,saturnPen,uranusPen,neptunePen]
+
+
+### SET UP THE SCREEN ###
+
+turtle.bgcolor("#000000") # color screen black
+
+functions[0](0,0,pens[0]) # draw sun
