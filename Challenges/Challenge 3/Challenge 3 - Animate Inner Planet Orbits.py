@@ -12,6 +12,7 @@ functions = [sun,mercury,venus,earth,mars]
 # pens
 planetPens = [sunPen,mercuryPen,venusPen,earthPen,marsPen]
 orbitPens =  [sunOrbitPen,mercuryOrbitPen,venusOrbitPen,earthOrbitPen,marsOrbitPen]
+speed = [0,40,16,10,6.2]
 
 ### SET UP SCREEN ###
 
@@ -19,7 +20,10 @@ screen = turtle.Screen()
 screen.bgcolor("#000000") # color screen black
 
 functions[0](0,0,planetPens[0]) # draw sun
+planetPens[0].hideturtle()
 
+
+### SET UP PENS ###
 for pen in orbitPens:
     ## set all pen colors as white
     pen.pencolor("#ffffff")
@@ -30,7 +34,15 @@ for pen in planetPens:
     ## hide all pens
     pen.hideturtle()
 
+## writing pen
+turtle.pencolor("#ffffff")
+turtle.penup()
+turtle.setpos(-230,230)
+turtle.pendown()
+
+## animaton setup
 screen.tracer(0)
+t = 0
 
 
 ## set starting position & distance from sun for drawing orbits
@@ -43,9 +55,14 @@ for i in range(1,5):
 ## Animation
 while True:
 
+    ## write time
+    t += 10
+    turtle.clear()
+    turtle.write(f"Time = {t} days", font=("Verdana", 15, "normal"))
+
     for i in range(1,5):
         ## draw orbit
-        orbitPens[i].circle(distance[i]/8e5,10)
+        orbitPens[i].circle(distance[i]/8e5,speed[i])
 
         ## clear old planet
         planetPens[i].clear()
