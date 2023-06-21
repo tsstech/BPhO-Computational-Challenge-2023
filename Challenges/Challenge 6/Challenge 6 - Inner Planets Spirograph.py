@@ -93,8 +93,13 @@ while True:
     ## write time
     t += 10
     turtle.clear()
-    turtle.write(f"Time = {t} days", font=("Verdana", 15, "normal"))
-
+    if t > 360:
+        if t % 360 == 0:
+            turtle.write(f"Time = {t//360} years", font=("Verdana", 15, "normal"))
+        else:
+            turtle.write(f"Time = {t//360} years {t%360} days", font=("Verdana", 15, "normal"))
+    else:
+        turtle.write(f"Time = {t} days", font=("Verdana", 15, "normal"))
     for i in range(2):
         ## draw orbit
         orbitPens[i].circle(distance[f"{planets[i]}"]/8e5,speed[f"{planets[i]}"])
