@@ -17,44 +17,19 @@ def sun(x,y,pen):
     pen.end_fill()
 
 
-def comet(x,y,pen):
-    # setting starting position
-    pen.hideturtle()
-    pen.penup()
-    pen.setpos(x+7,y)
-    pen.left(90)
-    pen.pendown()
-    # setting pen colors
-    pen.pencolor("#97999d")
-    pen.fillcolor("#97999d")
-    # drawing comet
-    pen.begin_fill()
-    pen.circle(7,180)
-    pen.right(20)
-    pen.forward(2)
-    pen.circle(4,90)
-    pen.forward(2)
-    pen.right(30)
-    pen.circle(7,100)
-    pen.right(40)
-    pen.forward(2)
-    pen.circle(5,100)
-    pen.left(30)
-    pen.forward(4)
-    pen.left(10)
-    pen.forward(2)
-    pen.circle(3,200)
-    pen.end_fill()
 
 
 
-def mercury(x,y,pen):
+
+
+def mercury(x,y,pen,degrees):
     #setting starting position
     pen.hideturtle()
     pen.penup()
     pen.setpos(x+10,y)
     pen.setheading(90)
     pen.pendown()
+    pen.setheading(0)
     # setting pen colors
     pen.pencolor("#dbd8d0")
     pen.fillcolor("#dbd8d0")
@@ -84,12 +59,13 @@ def mercury(x,y,pen):
     pen.pendown()
     pen.forward(5)
 
-def venus(x,y,pen):
+def venus(x,y,pen,degrees):
     #setting starting position
     pen.hideturtle()
     pen.penup()
     pen.setpos(x+10,y)
     pen.pendown()
+    pen.setheading(0)
     # setting pen colors
     pen.pencolor("#f09e07")
     pen.fillcolor("#f09e07")
@@ -128,12 +104,13 @@ def venus(x,y,pen):
     pen.circle(1)
     pen.end_fill()
     
-def earth(x,y,pen):
+def earth(x,y,pen,degrees):
     #setting starting position
     pen.hideturtle()
     pen.penup()
     pen.setpos(x+10,y)
     pen.pendown()
+    pen.setheading(0)
     # setting pen colors
     pen.pencolor("#133e9c")
     pen.fillcolor("#133e9c")
@@ -182,12 +159,13 @@ def earth(x,y,pen):
     pen.forward(5)
     pen.end_fill()
 
-def mars(x,y,pen):
+def mars(x,y,pen,degrees):
     #setting starting position
     pen.hideturtle()
     pen.penup()
     pen.setpos(x+10,y)
     pen.pendown()
+    pen.setheading(0)
     # setting pen colors
     pen.pencolor("#ff171f")
     pen.fillcolor("#ff171f")
@@ -241,7 +219,7 @@ def mars(x,y,pen):
     pen.circle(1)
     pen.end_fill()
 
-def jupiter(x,y,pen):
+def jupiter(x,y,pen,degrees):
     #setting starting position
     pen.hideturtle()
     pen.penup()
@@ -279,7 +257,7 @@ def jupiter(x,y,pen):
     pen.pendown()
     pen.forward(2)
 
-def saturn(x,y,pen):
+def saturn(x,y,pen,degrees):
     #setting starting position
     pen.hideturtle()
     pen.penup()
@@ -312,33 +290,69 @@ def saturn(x,y,pen):
         pen.right(18)
         pen.forward(0.8)
 
-def uranus(x,y,pen):
-    #setting starting position
+
+def comet(x,y,pen,degrees):
+    # setting starting position
     pen.hideturtle()
     pen.penup()
-    pen.setpos(x+10,y)
+    pen.setpos(x+7,y)
+    pen.left(90)
     pen.pendown()
     # setting pen colors
-    pen.pencolor("#afe0f0")
-    pen.fillcolor("#afe0f0")
-    # drawing planet
+    pen.pencolor("#97999d")
+    pen.fillcolor("#97999d")
+    # drawing comet
     pen.begin_fill()
-    pen.circle(10)
+    pen.circle(7,180)
+    pen.right(20)
+    pen.forward(2)
+    pen.circle(4,90)
+    pen.forward(2)
+    pen.right(30)
+    pen.circle(7,100)
+    pen.right(40)
+    pen.forward(2)
+    pen.circle(5,100)
+    pen.left(30)
+    pen.forward(4)
+    pen.left(10)
+    pen.forward(2)
+    pen.circle(3,200)
     pen.end_fill()
 
-def neptune(x,y,pen):
+
+def shootingStar(x,y,pen,degrees):
     #setting starting position
     pen.hideturtle()
     pen.penup()
     pen.setpos(x+10,y)
     pen.pendown()
+    pen.setheading(degrees + 90)
     # setting pen colors
-    pen.pencolor("#184a87")
-    pen.fillcolor("#184a87")
+    pen.pencolor("#afe0f0")
+    pen.fillcolor("#fad841")
     # drawing planet
     pen.begin_fill()
-    pen.circle(10)
+    for i in range(5):
+        pen.forward(10)
+        pen.right(144)
     pen.end_fill()
+    #drawing the streak
+    pen.penup()
+    pen.backward(2)
+    pen.right(90)
+    pen.forward(5)
+    pen.right(60)
+    pen.pendown()
+    pen.forward(20)
+    pen.backward(20)
+    pen.right(20)
+    pen.forward(20)
+    pen.backward(20)
+    pen.left(40)
+    pen.forward(20)
+
+
 
 
 sunPen = turtle.Turtle()
@@ -349,16 +363,5 @@ earthPen = turtle.Turtle()
 marsPen = turtle.Turtle()
 jupiterPen = turtle.Turtle()
 saturnPen = turtle.Turtle()
-uranusPen = turtle.Turtle()
-neptunePen = turtle.Turtle()
+starPen = turtle.Turtle()
 
-##sun(0,0,sunPen)
-comet(-20,-20,cometPen)
-mercury(0,0,mercuryPen)
-venus(30,30,venusPen)
-earth(50,50,earthPen)
-mars(70,70,marsPen)
-jupiter(100,100,jupiterPen)
-saturn(130,130,saturnPen)
-uranus(170,170,uranusPen)
-neptune(200,200,neptunePen)
