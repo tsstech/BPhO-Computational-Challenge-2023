@@ -17,19 +17,13 @@ def sun(x,y,pen):
     pen.end_fill()
 
 
-
-
-
-
-
-def mercury(x,y,pen,degrees):
+def planet1(x,y,pen,degrees):
     #setting starting position
     pen.hideturtle()
     pen.penup()
     pen.setpos(x+10,y)
     pen.setheading(90)
     pen.pendown()
-    pen.setheading(0)
     # setting pen colors
     pen.pencolor("#dbd8d0")
     pen.fillcolor("#dbd8d0")
@@ -59,7 +53,7 @@ def mercury(x,y,pen,degrees):
     pen.pendown()
     pen.forward(5)
 
-def venus(x,y,pen,degrees):
+def planet2(x,y,pen,degrees):
     #setting starting position
     pen.hideturtle()
     pen.penup()
@@ -104,7 +98,7 @@ def venus(x,y,pen,degrees):
     pen.circle(1)
     pen.end_fill()
     
-def earth(x,y,pen,degrees):
+def planet3(x,y,pen,degrees):
     #setting starting position
     pen.hideturtle()
     pen.penup()
@@ -159,7 +153,7 @@ def earth(x,y,pen,degrees):
     pen.forward(5)
     pen.end_fill()
 
-def mars(x,y,pen,degrees):
+def planet4(x,y,pen,degrees):
     #setting starting position
     pen.hideturtle()
     pen.penup()
@@ -219,7 +213,7 @@ def mars(x,y,pen,degrees):
     pen.circle(1)
     pen.end_fill()
 
-def jupiter(x,y,pen,degrees):
+def planet5(x,y,pen,degrees):
     #setting starting position
     pen.hideturtle()
     pen.penup()
@@ -257,7 +251,7 @@ def jupiter(x,y,pen,degrees):
     pen.pendown()
     pen.forward(2)
 
-def saturn(x,y,pen,degrees):
+def planet6(x,y,pen,degrees):
     #setting starting position
     pen.hideturtle()
     pen.penup()
@@ -280,6 +274,39 @@ def saturn(x,y,pen,degrees):
     pen.setpos(x+9,y+4)
     pen.pendown()
     pen.right(90)
+    # drawing ring
+    pen.forward(2)
+    for i in range(10):
+        pen.right(18)
+        pen.forward(0.8)
+    pen.forward(20)
+    for i in range(10):
+        pen.right(18)
+        pen.forward(0.8)
+
+def planet7(x,y,pen,degrees):
+    #setting starting position
+    pen.hideturtle()
+    pen.penup()
+    pen.setpos(x+9,y)
+    pen.setheading(90)
+    pen.pendown()
+    # setting pen colors & width
+    pen.width(1)
+    pen.pencolor("#e6c58c")
+    pen.fillcolor("#e6c58c")
+    # drawing planet
+    pen.begin_fill()
+    pen.circle(9)
+    pen.end_fill()
+    
+    # setting up to draw ring
+    pen.width(2)
+    pen.color("#c99679")
+    pen.penup()
+    pen.setpos(x+5,y+9)
+    pen.pendown()
+    pen.right(60)
     # drawing ring
     pen.forward(2)
     for i in range(10):
@@ -357,11 +384,14 @@ def shootingStar(x,y,pen,degrees):
 
 sunPen = turtle.Turtle()
 cometPen = turtle.Turtle()
-mercuryPen = turtle.Turtle()
-venusPen = turtle.Turtle()
-earthPen = turtle.Turtle()
-marsPen = turtle.Turtle()
-jupiterPen = turtle.Turtle()
-saturnPen = turtle.Turtle()
+planet1Pen = turtle.Turtle()
+planet2Pen = turtle.Turtle()
+planet3Pen = turtle.Turtle()
+planet4Pen = turtle.Turtle()
+planet5Pen = turtle.Turtle()
+planet6Pen = turtle.Turtle()
+planet7Pen = turtle.Turtle()
 starPen = turtle.Turtle()
+
+
 

@@ -10,10 +10,12 @@ radius =[432690,1516,3760.4,3958.8,2106.1]
 # orbit length of each planet in earth days, starting with mercury
 days = [88,225,365,687]
 # functions to draw each planet
-functions = [sun,mercury,venus,earth,shootingStar]
+allFunctions = [sun,planet1,planet2,planet3,planet4,planet5,planet6,planet7,comet,shootingStar]
+functions = [sun,planet1,planet2,planet3,planet4]
 # pens
-planetPens = [sunPen,mercuryPen,venusPen,earthPen,marsPen]
-orbitPens =  [turtle.Turtle(),turtle.Turtle(),turtle.Turtle(),turtle.Turtle(),turtle.Turtle()]
+allPlanetPens = [sunPen,planet1Pen,planet2Pen,planet3Pen,planet4Pen,planet5Pen,planet6Pen,planet7Pen,cometPen,starPen]
+planetPens = [sunPen,planet1Pen,planet2Pen,planet3Pen,planet4Pen]
+orbitPens =  [turtle.Turtle() for i in range(len(planetPens))]
 speed = [0,40,16,10,6.2]
 
 ### SET UP SCREEN ###
