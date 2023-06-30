@@ -12,10 +12,8 @@ def drawSolarSystem(functions,days,distance):
     orbitPens =  [turtle.Turtle() for i in range(len(functions))]
 
     # orbit length of each planet in earth days, starting with mercury
-    #days = [88,225,365,687]
-    #speed = [0,40,16,10,6.2]
     days = days
-    speed = [10 for i in range(len(days)+1)]
+    speed = [3600/days[i] for i in range(len(days))]
     # holds distance of planets from sun in miles 
     distance = distance
 
@@ -77,20 +75,15 @@ def drawSolarSystem(functions,days,distance):
         
         for i in range(1,len(orbitPens)):
             ## draw orbit
-            orbitPens[i].circle(distance[i]/8e5,speed[i])
+            orbitPens[i].circle(distance[i]/8e5,speed[i-1])
 
             ## clear old planet
             planetPens[i].clear()
             ## draw planet in new position
-            degrees = speed[i]*iterations
+            degrees = speed[i-1]*iterations
             functions[i](orbitPens[i].xcor(),orbitPens[i].ycor(),planetPens[i],degrees)
 
         ## update screen and pause
         screen.update()
         time.sleep(0.1)
         
-## eg func call
-#drawSolarSystem([sun,planet1],[365],[0,560e5])
-
-
-
