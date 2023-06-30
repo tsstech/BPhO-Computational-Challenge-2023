@@ -1,6 +1,6 @@
 import pygame, sys
 from pygame import mixer
-
+from Drawing_Planets_Functions import *
  
 # Initialize program
 pygame.init()
@@ -67,10 +67,13 @@ class ImageButton(object):
         return False
     
 
-## defining buttons
+## defining text buttons
 font = pygame.font.SysFont('comicsans', 30, True)  
-newPlanet = TextButton(300, 300, 210, 50, (172,146,237), text="New Planet")
 
+newPlanet = TextButton(300, 300, 210, 50, (172,146,237), text="New Planet")
+draw = TextButton(245, 400, 320, 50, (172,146,237), text="Draw Solar System")
+
+## defining image buttons
 planet1img = pygame.image.load('planet1.png') 
 planet1btn = ImageButton(150,100,145,140,planet1img)
 
@@ -103,7 +106,7 @@ starbtn = ImageButton(530,450,90,127,starimg)
 
 ######## FUNCTIONS ###########
 def newPlanetPage(screen):
-    screen.fill((0,0,0))
+    screen.fill((0,0,0)) ## clear screen
     
     running = True
     while running: 
@@ -112,32 +115,35 @@ def newPlanetPage(screen):
             if event.type == pygame.QUIT:
                 sys.exit()
 
+            ## checking if a button is pressed
+            ## if pressed, it returns the function to draw the planet
             pos = pygame.mouse.get_pos()
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if planet1btn.isOver(pos):
-                    print("1")
+                    return planet1
                 elif planet2btn.isOver(pos):
-                    print("2")
+                    return planet2
                 elif planet3btn.isOver(pos):
-                    print("3")
+                    return planet3
                 elif planet4btn.isOver(pos):
-                    print("4")
+                    return planet4
                 elif planet5btn.isOver(pos):
-                    print("5")
+                    return planet5
                 elif planet6btn.isOver(pos):
-                    print("6")
+                    return planet6
                 elif planet7btn.isOver(pos):
-                    print("7")
+                    return planet7
                 elif cometbtn.isOver(pos):
-                    print("c")
+                    return comet
                 elif starbtn.isOver(pos):
-                    print("s")
+                    return shootingStar
 
         ## writing instructions to select a planet icon
         instructionsFont = pygame.font.Font('FredokaOne-Regular.ttf',50)
         instructions = instructionsFont.render("Select an icon for your planet:",True,(255,255,255))
         screen.blit(instructions,(30,10))
         
+        ## drawing buttons
         planet1btn.draw(screen)
         planet2btn.draw(screen)
         planet3btn.draw(screen)
@@ -148,10 +154,14 @@ def newPlanetPage(screen):
         cometbtn.draw(screen)
         starbtn.draw(screen)
 
-
+        ## updating screen
         pygame.display.update()
 
 
+######## VARIABLES FOR TURTLE ####
+functions = [sun]
+days = []
+distance = [0]
 
 
 # game loop
@@ -167,6 +177,7 @@ while running:
 
     ## drawing buttons
     newPlanet.draw(screen)
+    draw.draw(screen)
     
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -175,10 +186,10 @@ while running:
         pos = pygame.mouse.get_pos()
         if event.type == pygame.MOUSEBUTTONDOWN:
             if newPlanet.isOver(pos):
-                newPlanetPage(screen)
+                functions.append(newPlanetPage(screen))
                 
     
-
+    ## updating screen
     pygame.display.update()
 
 
