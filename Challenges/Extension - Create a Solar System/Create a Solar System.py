@@ -158,6 +158,47 @@ def newPlanetPage(screen):
         pygame.display.update()
 
 
+def daysPage(screen):
+    screen.fill((0,0,0)) ## clear screen
+
+    ## input text box
+    inputRect = pygame.Rect(200, 200, 140, 32)
+
+    ## input text & font
+    baseFont = pygame.font.Font('FredokaOne-Regular.ttf',20)
+    userInput = ""
+    
+    running = True
+    while running: 
+        
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
+
+            elif event.type == pygame.KEYDOWN:
+                # Check for backspace
+                if event.key == pygame.K_BACKSPACE:
+      
+                    # get text input from 0 to -1 i.e. end.
+                    userInput = userInput[:-1]
+      
+                # Unicode standard is used for string
+                # formation
+                else:
+                    userInput += event.unicode
+
+
+            ## draw input box
+            pygame.draw.rect(screen, "#23ffff", inputRect)
+      
+            ## writing user text as they type
+            textSurface = baseFont.render(userInput, True, (255, 255, 255))
+            screen.blit(textSurface, (inputRect.x+5, inputRect.y+5))
+            inputRect.w = max(100, textSurface.get_width()+10)  ## set textfield width
+            
+        ## updating screen
+        pygame.display.update()
+
 ######## VARIABLES FOR TURTLE ####
 functions = [sun]
 days = []
@@ -187,6 +228,10 @@ while running:
         if event.type == pygame.MOUSEBUTTONDOWN:
             if newPlanet.isOver(pos):
                 functions.append(newPlanetPage(screen))
+                days.append(daysPage(screen))
+            elif draw.isOver(pos):
+                from Drawing_Solar_System import *
+                drawSolarSystem(functions,days,distance)
                 
     
     ## updating screen
