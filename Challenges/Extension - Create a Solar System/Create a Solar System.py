@@ -70,8 +70,9 @@ class ImageButton(object):
 ## defining text buttons
 font = pygame.font.SysFont('comicsans', 30, True)  
 
-newPlanet = TextButton(300, 300, 210, 50, (172,146,237), text="New Planet")
-draw = TextButton(245, 400, 320, 50, (172,146,237), text="Draw Solar System")
+newPlanet = TextButton(300, 300, 210, 50, ("#84A7BA"), text="New Planet")
+draw = TextButton(245, 400, 320, 50, ("#84A7BA"), text="Draw Solar System")
+submit = TextButton(50, 470, 150, 50, ("#84A7BA"), text="Submit")
 
 ## defining image buttons
 planet1img = pygame.image.load('planet1.png') 
@@ -106,7 +107,7 @@ starbtn = ImageButton(530,450,90,127,starimg)
 
 ######## FUNCTIONS ###########
 def newPlanetPage(screen):
-    screen.fill((0,0,0)) ## clear screen
+    screen.fill("#303655") ## clear screen
     
     running = True
     while running: 
@@ -159,14 +160,31 @@ def newPlanetPage(screen):
 
 
 def daysPage(screen):
-    screen.fill((0,0,0)) ## clear screen
+    screen.fill("#303655") ## clear screen
+
+    ## writing instructions to input orbit length
+    instructionsFont = pygame.font.Font('FredokaOne-Regular.ttf',50)
+    instructions = instructionsFont.render("How long is the orbit in days?",True,(255,255,255))
+    screen.blit(instructions,(50,50))
+
+    ## writing instructions to input distance from sun
+    instructionsFont = pygame.font.Font('FredokaOne-Regular.ttf',50)
+    instructions = instructionsFont.render("How far is the planet?",True,(255,255,255))
+    screen.blit(instructions,(50,270))
 
     ## input text box
-    inputRect = pygame.Rect(200, 200, 140, 32)
+    daysInputRect = pygame.Rect(50, 140, 190, 52)
+    distanceInputRect = pygame.Rect(50, 360, 190, 52)
 
     ## input text & font
-    baseFont = pygame.font.Font('FredokaOne-Regular.ttf',20)
-    userInput = ""
+    baseFont = pygame.font.Font('FredokaOne-Regular.ttf',40)
+    daysInput = ""
+    distanceInput = ""
+
+    ## variables that check if user is typing in textbox
+    daysTyping = False
+    distanceTyping = False
+
     
     running = True
     while running: 
@@ -175,27 +193,75 @@ def daysPage(screen):
             if event.type == pygame.QUIT:
                 sys.exit()
 
-            elif event.type == pygame.KEYDOWN:
-                # Check for backspace
-                if event.key == pygame.K_BACKSPACE:
-      
-                    # get text input from 0 to -1 i.e. end.
-                    userInput = userInput[:-1]
-      
-                # Unicode standard is used for string
-                # formation
+            pos = pygame.mouse.get_pos()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if daysInputRect.collidepoint(pos): # if user clicks on textfield for orbit length
+                    daysTyping = True                    # set typing to true
                 else:
-                    userInput += event.unicode
+                    daysTyping = False
 
+                if distanceInputRect.collidepoint(pos): # if user clicks on textfield for orbit length
+                    distanceTyping = True                    # set typing to true
+                else:
+                    distanceTyping = False
 
-            ## draw input box
-            pygame.draw.rect(screen, "#23ffff", inputRect)
-      
-            ## writing user text as they type
-            textSurface = baseFont.render(userInput, True, (255, 255, 255))
-            screen.blit(textSurface, (inputRect.x+5, inputRect.y+5))
-            inputRect.w = max(100, textSurface.get_width()+10)  ## set textfield width
+                if submit.isOver(pos):      # if user clicks submit button
+                    return int(daysInput), int(distanceInput+"000000")   # return days
+
+            if daysTyping == True:      # if user is typing in days textfield
+                if event.type == pygame.KEYDOWN:
+                    # Check for backspace
+                    if event.key == pygame.K_BACKSPACE:
+          
+                        # get text input from 0 to -1 i.e. end.
+                        daysInput = daysInput[:-1]
+          
+                    # Unicode standard is used for string
+                    # formation
+                    else:
+                        daysInput += event.unicode
+
+            elif distanceTyping == True:      # if user is typing in days textfield
+                if event.type == pygame.KEYDOWN:
+                    # Check for backspace
+                    if event.key == pygame.K_BACKSPACE:
+          
+                        # get text input from 0 to -1 i.e. end.
+                        distanceInput = distanceInput[:-1]
+          
+                    # Unicode standard is used for string
+                    # formation
+                    else:
+                        distanceInput += event.unicode
             
+            
+        ## draw input box
+        #pygame.draw.rect(screen, "#BFCBCE", daysInputRect)  CHOOSE COLOUR #####
+        pygame.draw.rect(screen, "#6F90AF", daysInputRect)
+  
+        ## writing user text as they type
+        textSurface = baseFont.render(daysInput, True, (255, 255, 255))
+        screen.blit(textSurface, (daysInputRect.x+10, daysInputRect.y+3))
+        daysInputRect.w = max(100, textSurface.get_width()+10)  ## set textfield width
+
+        textSurface = baseFont.render("days", True, (255, 255, 255))
+        screen.blit(textSurface, (daysInputRect.x+200, daysInputRect.y+3))
+
+        ## draw input box
+        #pygame.draw.rect(screen, "#BFCBCE", daysInputRect)  CHOOSE COLOUR #####
+        pygame.draw.rect(screen, "#6F90AF", distanceInputRect)
+  
+        ## writing user text as they type
+        textSurface = baseFont.render(distanceInput, True, (255, 255, 255))
+        screen.blit(textSurface, (distanceInputRect.x+10, distanceInputRect.y+3))
+        distanceInputRect.w = max(100, textSurface.get_width()+10)  ## set textfield width
+
+        textSurface = baseFont.render("million miles", True, (255, 255, 255))
+        screen.blit(textSurface, (distanceInputRect.x+200, distanceInputRect.y+3))
+        
+        ## draw submit button
+        submit.draw(screen)
+                    
         ## updating screen
         pygame.display.update()
 
@@ -211,7 +277,7 @@ running = True
 while running:
 
     # screen background color
-    screen.fill((0,0,0))
+    screen.fill("#303655")
 
     # background image
     #screen.blit(background,(0,0))
@@ -228,7 +294,12 @@ while running:
         if event.type == pygame.MOUSEBUTTONDOWN:
             if newPlanet.isOver(pos):
                 functions.append(newPlanetPage(screen))
-                days.append(daysPage(screen))
+                day, dist = daysPage(screen)
+                days.append(day)
+                distance.append(dist)
+                print(functions)
+                print(days)
+                print(distance)
             elif draw.isOver(pos):
                 from Drawing_Solar_System import *
                 drawSolarSystem(functions,days,distance)

@@ -15,7 +15,7 @@ def drawSolarSystem(functions,days,distance):
     #days = [88,225,365,687]
     #speed = [0,40,16,10,6.2]
     days = days
-    speed = [0,10]
+    speed = [10 for i in range(len(days)+1)]
     # holds distance of planets from sun in miles 
     distance = distance
 
@@ -90,7 +90,7 @@ def drawSolarSystem(functions,days,distance):
         time.sleep(0.1)
         
 ## eg func call
-##drawSolarSystem([sun,planet1],[365],[0,560e5])
+#drawSolarSystem([sun,planet1],[365],[0,560e5])
 
 
 
