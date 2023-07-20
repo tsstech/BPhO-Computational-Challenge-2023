@@ -103,6 +103,7 @@ class SolarSystem:
 
     ## moves and draws each body
     def update_all(self):
+        self.bodies.sort(key=lambda item: item.position[0]) ## orders bodies based on position (behind or in front of sun)
         for body in self.bodies:
             body.move()
             body.draw()
