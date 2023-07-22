@@ -70,11 +70,11 @@ class ImageButton(object):
 ## defining text buttons
 font = pygame.font.SysFont('comicsans', 30, True)  
 
-showPlanets = TextButton(300, 200, 320, 50, ("#84A7BA"), text="Show My Planets")
+showPlanets = TextButton(245, 200, 320, 50, ("#84A7BA"), text="Show My Planets")
 newPlanet = TextButton(300, 300, 210, 50, ("#84A7BA"), text="New Planet")
 draw = TextButton(245, 400, 320, 50, ("#84A7BA"), text="Draw Solar System")
 submit = TextButton(50, 470, 150, 50, ("#84A7BA"), text="Submit")
-home = TextButton(50, 470, 150, 50, ("#84A7BA"), text="Home")
+home = TextButton(330, 520, 150, 50, ("#84A7BA"), text="Home")
 
 ## defining image buttons
 planet1img = pygame.image.load('planet1.png') 
@@ -167,7 +167,7 @@ def showPlanetsPage(screen,days,functions,distances):
     ## writing page title
     titleFont = pygame.font.Font('FredokaOne-Regular.ttf',50)
     title = titleFont.render("My Planets",True,(255,255,255))
-    screen.blit(title,(260,50))
+    screen.blit(title,(260,20))
     
 
     ## loop variables
@@ -184,19 +184,44 @@ def showPlanetsPage(screen,days,functions,distances):
     running = True
     while running:
 
-        pos = pygame.mouse.get_pos()
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            ## if home button is clicked
-            if home.isOver(pos):
-                print("HRHR")
-                return None
-
-        ## run through planets and draw onto screen
-        for i in range(len(functions)):
-            screen.blit(imgs[functions[i]], (100, 100))
-
         ## draw back to home button
         home.draw(screen)
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
+
+            pos = pygame.mouse.get_pos()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if home.isOver(pos):    ## if home button is clicked 
+                    return None
+
+        textFont = pygame.font.Font('FredokaOne-Regular.ttf',20)
+        ## run through planets and draw onto screen
+        for i in range(len(functions)):
+            if i < 3:   ## if it is up to the 3rd planet, write on 1st column
+                ## planet icon
+                screen.blit(imgs[functions[i]], (85, 90+(150*(i))))
+                ## days
+                day = textFont.render(f"Days: {days[i-1]}",True,(255,255,255))
+                screen.blit(day,(250,100+(150*(i))))
+                ## distance
+                distance1 = textFont.render("Distance:",True,(255,255,255))
+                screen.blit(distance1,(250,140+(150*(i))))
+                distance2 = textFont.render(f"{distances[i+1]}",True,(255,255,255))
+                screen.blit(distance2,(250,175+(150*(i))))
+            else:   ## if it is after the 3rd planet, write on 2nd column
+                ## planet icon
+                screen.blit(imgs[functions[i]], (450, 90+(150*(i-3))))
+                ## days
+                day = textFont.render(f"Days: {days[i-1]}",True,(255,255,255))
+                screen.blit(day,(600,100+(150*(i-3))))
+                ## distance
+                distance1 = textFont.render("Distance:",True,(255,255,255))
+                screen.blit(distance1,(600,140+(150*(i-3))))
+                distance2 = textFont.render(f"{distances[i+1]}",True,(255,255,255))
+                screen.blit(distance2,(600,175+(150*(i-3))))
+        
         
         ## updating screen
         pygame.display.update()
