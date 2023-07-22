@@ -70,9 +70,11 @@ class ImageButton(object):
 ## defining text buttons
 font = pygame.font.SysFont('comicsans', 30, True)  
 
+showPlanets = TextButton(300, 200, 320, 50, ("#84A7BA"), text="Show My Planets")
 newPlanet = TextButton(300, 300, 210, 50, ("#84A7BA"), text="New Planet")
 draw = TextButton(245, 400, 320, 50, ("#84A7BA"), text="Draw Solar System")
 submit = TextButton(50, 470, 150, 50, ("#84A7BA"), text="Submit")
+home = TextButton(50, 470, 150, 50, ("#84A7BA"), text="Home")
 
 ## defining image buttons
 planet1img = pygame.image.load('planet1.png') 
@@ -121,23 +123,23 @@ def newPlanetPage(screen):
             pos = pygame.mouse.get_pos()
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if planet1btn.isOver(pos):
-                    return planet1
+                    return planet1, "planet1"
                 elif planet2btn.isOver(pos):
-                    return planet2
+                    return planet2, "planet"
                 elif planet3btn.isOver(pos):
-                    return planet3
+                    return planet3, "planet3"
                 elif planet4btn.isOver(pos):
-                    return planet4
+                    return planet4, "planet4"
                 elif planet5btn.isOver(pos):
-                    return planet5
+                    return planet5, "planet5"
                 elif planet6btn.isOver(pos):
-                    return planet6
+                    return planet6, "planet6"
                 elif planet7btn.isOver(pos):
-                    return planet7
+                    return planet7, "planet7"
                 elif cometbtn.isOver(pos):
-                    return comet
+                    return comet, "comet"
                 elif starbtn.isOver(pos):
-                    return shootingStar
+                    return shootingStar, "shootingStar"
 
         ## writing instructions to select a planet icon
         instructionsFont = pygame.font.Font('FredokaOne-Regular.ttf',50)
@@ -157,6 +159,48 @@ def newPlanetPage(screen):
 
         ## updating screen
         pygame.display.update()
+
+
+def showPlanetsPage(screen,days,functions,distances):
+    screen.fill("#303655") ## clear screen
+
+    ## writing page title
+    titleFont = pygame.font.Font('FredokaOne-Regular.ttf',50)
+    title = titleFont.render("My Planets",True,(255,255,255))
+    screen.blit(title,(260,50))
+    
+
+    ## loop variables
+    imgs = {"planet1" : planet1img,
+            "planet2" : planet2img,
+            "planet3" : planet3img,
+            "planet4" : planet4img,
+            "planet5" : planet5img,
+            "planet6" : planet6img,
+            "planet7" : planet7img,
+            "comet" : cometimg,
+            "shootingStar" : starimg}
+    
+    running = True
+    while running:
+
+        pos = pygame.mouse.get_pos()
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            ## if home button is clicked
+            if home.isOver(pos):
+                print("HRHR")
+                return None
+
+        ## run through planets and draw onto screen
+        for i in range(len(functions)):
+            screen.blit(imgs[functions[i]], (100, 100))
+
+        ## draw back to home button
+        home.draw(screen)
+        
+        ## updating screen
+        pygame.display.update()
+
 
 
 def daysPage(screen):
@@ -267,6 +311,7 @@ def daysPage(screen):
 
 ######## VARIABLES FOR TURTLE ####
 functions = [sun]
+functionNames =[]
 days = []
 distance = [0]
 
@@ -283,6 +328,7 @@ while running:
     #screen.blit(background,(0,0))
 
     ## drawing buttons
+    showPlanets.draw(screen)
     newPlanet.draw(screen)
     draw.draw(screen)
     
@@ -292,14 +338,19 @@ while running:
 
         pos = pygame.mouse.get_pos()
         if event.type == pygame.MOUSEBUTTONDOWN:
-            if newPlanet.isOver(pos):
-                functions.append(newPlanetPage(screen))
+
+            if showPlanets.isOver(pos):
+                showPlanetsPage(screen,days,functionNames,distance)
+
+            elif newPlanet.isOver(pos):
+                function, funcName = newPlanetPage(screen)
+                functions.append(function)
+                functionNames.append(funcName)
+                
                 day, dist = daysPage(screen)
                 days.append(day)
                 distance.append(dist)
-                print(functions)
-                print(days)
-                print(distance)
+
             elif draw.isOver(pos):
                 from Drawing_Solar_System import *
                 drawSolarSystem(functions,days,distance)
