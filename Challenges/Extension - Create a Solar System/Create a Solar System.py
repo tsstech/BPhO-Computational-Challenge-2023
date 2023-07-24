@@ -68,7 +68,7 @@ class ImageButton(object):
     
 
 ## defining text buttons
-font = pygame.font.SysFont('comicsans', 30, True)  
+font = pygame.font.Font("FredokaOne-Regular.ttf", 30)  
 
 showPlanets = TextButton(245, 200, 320, 50, ("#84A7BA"), text="Show My Planets")
 newPlanet = TextButton(300, 300, 210, 50, ("#84A7BA"), text="New Planet")
@@ -196,7 +196,7 @@ def showPlanetsPage(screen,days,functions,distances):
                 if home.isOver(pos):    ## if home button is clicked 
                     return None
 
-        textFont = pygame.font.Font('FredokaOne-Regular.ttf',20)
+        textFont = pygame.font.Font('Fredoka-Regular.ttf',20)
         ## run through planets and draw onto screen
         for i in range(len(functions)):
             if i < 3:   ## if it is up to the 3rd planet, write on 1st column
