@@ -57,9 +57,7 @@ def drawSolarSystem(functions,days,distance):
         orbitPens[i].pendown()
 
     ## Animation
-    while True:
-
-        iterations += 1
+    for i in range(108):
 
         ## write time
         t += 10
@@ -86,4 +84,5 @@ def drawSolarSystem(functions,days,distance):
         ## update screen and pause
         screen.update()
         time.sleep(0.1)
-        
+
+    screen.exitonclick()
