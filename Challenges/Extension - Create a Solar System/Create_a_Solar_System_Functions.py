@@ -1,8 +1,54 @@
 import pygame, sys
 from Drawing_Planets_Functions import *
-from Create_a_Solar_System import *
 
-############ BUTTONS #############
+# Initialize program
+pygame.init()
+
+
+############### BUTTONS #################
+
+## TEXT button class 
+class TextButton(object):
+    def __init__(self, x, y, width, height, colour1, text=''):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.colour1 = colour1
+        self.text = text
+        
+    def draw(self, screen):  # draws centralised buttons and text
+        text = font.render(self.text, 1, (255,255,255))
+        pygame.draw.rect(screen, self.colour1,
+                         (self.x, self.y, self.width, self.height),0)
+        screen.blit(text, (self.x + (self.width/2 - text.get_width()/2), self.y + (self.height/2 - text.get_height()/2)))
+
+    def isOver(self, pos):  # detects if mouse positions is above buttons'
+        if pos[0] > self.x and pos[0] < self.x + self.width:
+            if pos[1] > self.y and pos[1] < self.y + self.height:
+                return True
+        return False
+
+
+## IMAGE button class
+class ImageButton(object):
+    def __init__(self, x, y, width, height, image):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.image = image
+        
+    def draw(self, screen):  # draws centralised buttons and text
+        screen.blit(self.image, (self.x, self.y))
+
+    def isOver(self, pos):  # detects if mouse positions is above buttons'
+        if pos[0] > self.x and pos[0] < self.x + self.width:
+            if pos[1] > self.y and pos[1] < self.y + self.height:
+                return True
+        return False
+    
+
 
 ## defining text buttons
 font = pygame.font.Font("FredokaOne-Regular.ttf", 30)  

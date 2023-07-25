@@ -1,6 +1,7 @@
 import pygame, sys
 from pygame import mixer
 from Drawing_Planets_Functions import *
+from Create_a_Solar_System_Functions import *
  
 # Initialize program
 pygame.init()
@@ -22,63 +23,18 @@ pygame.display.set_caption("Create a Solar System")        # displaying title
 
 
 
-
-############### BUTTONS #################
-
-## TEXT button class 
-class TextButton(object):
-    def __init__(self, x, y, width, height, colour1, text=''):
-        self.x = x
-        self.y = y
-        self.width = width
-        self.height = height
-        self.colour1 = colour1
-        self.text = text
-        
-    def draw(self, screen):  # draws centralised buttons and text
-        text = font.render(self.text, 1, (255,255,255))
-        pygame.draw.rect(screen, self.colour1,
-                         (self.x, self.y, self.width, self.height),0)
-        screen.blit(text, (self.x + (self.width/2 - text.get_width()/2), self.y + (self.height/2 - text.get_height()/2)))
-
-    def isOver(self, pos):  # detects if mouse positions is above buttons'
-        if pos[0] > self.x and pos[0] < self.x + self.width:
-            if pos[1] > self.y and pos[1] < self.y + self.height:
-                return True
-        return False
-
-
-## IMAGE button class
-class ImageButton(object):
-    def __init__(self, x, y, width, height, image):
-        self.x = x
-        self.y = y
-        self.width = width
-        self.height = height
-        self.image = image
-        
-    def draw(self, screen):  # draws centralised buttons and text
-        screen.blit(self.image, (self.x, self.y))
-
-    def isOver(self, pos):  # detects if mouse positions is above buttons'
-        if pos[0] > self.x and pos[0] < self.x + self.width:
-            if pos[1] > self.y and pos[1] < self.y + self.height:
-                return True
-        return False
-    
-
-
 ## defining text buttons for homepage
 font = pygame.font.Font("FredokaOne-Regular.ttf", 30)  
 
-showPlanets = TextButton(245, 200, 320, 50, ("#84A7BA"), text="Show My Planets")
-newPlanet = TextButton(300, 300, 210, 50, ("#84A7BA"), text="New Planet")
-draw = TextButton(245, 400, 320, 50, ("#84A7BA"), text="Draw Solar System")
-settings = TextButton(345, 500, 320, 50, ("#84A7BA"), text="Settings")
+showPlanets = TextButton(245, 280, 320, 50, ("#84A7BA"), text="Show My Planets")
+newPlanet = TextButton(300, 200, 210, 50, ("#84A7BA"), text="New Planet")
+draw = TextButton(245, 360, 320, 50, ("#84A7BA"), text="Draw Solar System")
+settings = TextButton(330, 440, 150, 50, ("#84A7BA"), text="Settings")
 
 
 ######## BASIC VARIABLES #######
 backgroundColor = "#303655"
+titleFont = pygame.font.Font('FredokaOne-Regular.ttf',50)
 
 
 ######## VARIABLES FOR TURTLE ########
@@ -95,6 +51,10 @@ while running:
 
     # screen background color
     screen.fill(backgroundColor)
+
+    ## title
+    title = titleFont.render("Create a Solar System!",True,(255,255,255))
+    screen.blit(title,(125,30))
 
     ## drawing buttons
     showPlanets.draw(screen)
