@@ -26,10 +26,11 @@ pygame.display.set_caption("Create a Solar System")        # displaying title
 ## defining text buttons for homepage
 font = pygame.font.Font("FredokaOne-Regular.ttf", 30)  
 
-showPlanets = TextButton(245, 280, 320, 50, ("#84A7BA"), text="Show My Planets")
-newPlanet = TextButton(300, 200, 210, 50, ("#84A7BA"), text="New Planet")
+newPlanet = TextButton(245, 180, 320, 50, ("#84A7BA"), text="New Planet")
+showPlanets = TextButton(245, 240, 320, 50, ("#84A7BA"), text="Show My Planets")
+delete = TextButton(245, 300, 320, 50, ("#84A7BA"), text="Delete Planet")
 draw = TextButton(245, 360, 320, 50, ("#84A7BA"), text="Draw Solar System")
-settings = TextButton(330, 440, 150, 50, ("#84A7BA"), text="Settings")
+settings = TextButton(245, 420, 320, 50, ("#84A7BA"), text="Settings")
 
 
 ######## BASIC VARIABLES #######
@@ -54,12 +55,13 @@ while running:
 
     ## title
     title = titleFont.render("Create a Solar System!",True,(255,255,255))
-    screen.blit(title,(125,30))
+    screen.blit(title,(125,60))
 
     ## drawing buttons
-    showPlanets.draw(screen)
     newPlanet.draw(screen)
+    showPlanets.draw(screen)
     draw.draw(screen)
+    delete.draw(screen)
     settings.draw(screen)
     
     for event in pygame.event.get():
@@ -81,9 +83,19 @@ while running:
                 days.append(day)
                 distance.append(dist)
 
+            elif delete.isOver(pos):
+                deleteIndex = deletePage(screen,days,functionNames,distance)
+                if deleteIndex != None:
+                    days.pop(deleteIndex-1)
+                    distance.pop(deleteIndex)
+                    functions.pop(deleteIndex)
+                    functionNames.pop(deleteIndex-1)
+                
             elif draw.isOver(pos):
                 from Drawing_Solar_System import *
                 drawSolarSystem(functions,days,distance)
+
+            
                 
     
     ## updating screen
