@@ -5,7 +5,7 @@ def sun(x,y,pen):
     # setting starting position
     pen.hideturtle()
     pen.penup()
-    pen.setpos(x+30,y)
+    pen.setpos(x+10,y)
     pen.left(90)
     pen.pendown()
     # setting pen colors
@@ -13,7 +13,7 @@ def sun(x,y,pen):
     pen.fillcolor("#fcba03")
     # drawing sun
     pen.begin_fill()
-    pen.circle(30)
+    pen.circle(10)
     pen.end_fill()
 
 def mercury(x,y,pen):
@@ -201,12 +201,3 @@ saturnPen = turtle.Turtle()
 uranusPen = turtle.Turtle()
 neptunePen = turtle.Turtle()
 
-##sun(0,0,sunPen)
-##mercury(50,50,mercuryPen)
-##venus(70,70,venusPen)
-##earth(90,90,earthPen)
-##mars(110,110,marsPen)
-##jupiter(140,140,jupiterPen)
-##saturn(180,180,saturnPen)
-##uranus(210,210,uranusPen)
-##neptune(230,230,neptunePen)
