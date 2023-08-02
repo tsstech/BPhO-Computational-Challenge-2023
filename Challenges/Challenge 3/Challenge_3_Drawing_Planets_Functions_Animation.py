@@ -5,7 +5,7 @@ def sun(x,y,pen):
     # setting starting position
     pen.hideturtle()
     pen.penup()
-    pen.setpos(x+30,y)
+    pen.setpos(x+10,y)
     pen.left(90)
     pen.pendown()
     # setting pen colors
@@ -13,7 +13,7 @@ def sun(x,y,pen):
     pen.fillcolor("#fcba03")
     # drawing sun
     pen.begin_fill()
-    pen.circle(30)
+    pen.circle(10)
     pen.end_fill()
 
 def mercury(x,y,pen):

@@ -19,7 +19,7 @@ speed = [0,40,16,10,6.2]
 screen = turtle.Screen()
 screen.bgcolor("#000000") # color screen black
 
-functions[0](0,0,planetPens[0]) # draw sun
+functions[0](-10,0,planetPens[0]) # draw sun
 planetPens[0].hideturtle()
 
 
