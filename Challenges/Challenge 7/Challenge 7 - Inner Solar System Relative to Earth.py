@@ -11,14 +11,6 @@ filename = open('planet_positions.csv', 'r')
 file = csv.DictReader(filename)
 
 ## create lists to store data points for sun, mercury, venus & mars
-##sunx = []
-##suny = []
-##merx = []
-##mery = []
-##venx = []
-##veny = []
-##marx = []
-##mary = []
 x = [[],[],[],[]]
 y = [[],[],[],[]]
 
@@ -57,16 +49,17 @@ for i in range(1,4):
 
 
 ############ DRAWING THE GRAPH ###########
+plt.plot(diffx[0], diffy[0], color="yellow", marker=None)
+plt.plot(diffx[1], diffy[1], color="red", marker=None)
+plt.plot(diffx[2], diffy[2], color="grey", marker=None)
 plt.plot(0, 0, color="blue", marker="o")
 plt.plot(diffx[3], diffy[3], color="pink", marker=None)
-plt.plot(diffx[2], diffy[2], color="grey", marker=None)
-plt.plot(diffx[1], diffy[1], color="red", marker=None)
-plt.plot(diffx[0], diffy[0], color="yellow", marker=None)
 
 
 plt.xlabel("x/AU")
 plt.ylabel("y/AU")
 plt.title("Inner Solar System Relative to Earth")
+plt.legend(["Sun","Mercury","Venus", "Earth","Mars"], loc ="lower right")
 
 plt.show()
 
