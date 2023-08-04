@@ -54,7 +54,7 @@ class ImageButton(object):
 font = pygame.font.Font("FredokaOne-Regular.ttf", 30)  
 
 submit = TextButton(50, 500, 150, 50, ("#84A7BA"), text="Submit")
-submit2 = TextButton(610, 510, 150, 50, ("#84A7BA"), text="Submit")
+submit2 = TextButton(610, 520, 150, 50, ("#84A7BA"), text="Submit")
 home = TextButton(330, 520, 150, 50, ("#84A7BA"), text="Home")
 home2 =TextButton(30, 20, 150, 50, ("#84A7BA"), text="Home")
 
@@ -239,7 +239,7 @@ def daysPage(screen):
         screen.blit(textSurface, (daysInputRect.x+10, daysInputRect.y+3))
         daysInputRect.w = max(100, textSurface.get_width()+10)  ## set textfield width
 
-        textSurface = baseFont.render("days", True, (255, 255, 255))
+        textSurface = baseFont.render("earth days", True, (255, 255, 255))
         screen.blit(textSurface, (daysInputRect.x+200, daysInputRect.y+3))
 
         ## draw input box for distance
@@ -307,7 +307,7 @@ def showPlanetsPage(screen,days,functions,distances):
                 ## planet icon
                 screen.blit(imgs[functions[i]], (85, 90+(150*(i))))
                 ## days
-                day = textFont.render(f"Days: {days[i-1]}",True,(255,255,255))
+                day = textFont.render(f"Days: {days[i]}",True,(255,255,255))
                 screen.blit(day,(250,100+(150*(i))))
                 ## distance
                 distance1 = textFont.render("Distance:",True,(255,255,255))
@@ -359,10 +359,10 @@ def deletePage(screen,days,functions,distances):
     ## instructions to input planet to delete
     instructionsFont = pygame.font.Font('FredokaOne-Regular.ttf',40)
     instructions = instructionsFont.render("Select a planet to delete: ",True,(255,255,255))
-    screen.blit(instructions,(40,510))
+    screen.blit(instructions,(40,520))
 
     ## input text box
-    inputRect = pygame.Rect(540, 510, 50, 50)
+    inputRect = pygame.Rect(540, 520, 50, 50)
 
     ## input text & font
     baseFont = pygame.font.Font('FredokaOne-Regular.ttf',40)
@@ -378,6 +378,42 @@ def deletePage(screen,days,functions,distances):
         ## draw back to home button
         home2.draw(screen)
         submit2.draw(screen)
+
+
+        ########### DRAWING PLANETS ############
+        textFont = pygame.font.Font('Fredoka-Regular.ttf',20)
+        ## run through planets and draw onto screen
+        for i in range(len(functions)):
+            if i < 3:   ## if it is up to the 3rd planet, write on 1st column
+                ## planet icon
+                screen.blit(imgs[functions[i]], (85, 90+(150*(i))))
+                ## planet number
+                num = textFont.render(f"Planet {i+1}",True,(255,255,255))
+                screen.blit(num,(250,100+(150*(i))))
+                ## days
+                day = textFont.render(f"Days: {days[i-1]}",True,(255,255,255))
+                screen.blit(day,(250,135+(150*(i))))
+                ## distance
+                distance1 = textFont.render("Distance:",True,(255,255,255))
+                screen.blit(distance1,(250,165+(150*(i))))
+                distance2 = textFont.render(f"{distances[i+1]}",True,(255,255,255))
+                screen.blit(distance2,(250,185+(150*(i))))
+                
+            else:   ## if it is after the 3rd planet, write on 2nd column
+                ## planet icon
+                screen.blit(imgs[functions[i]], (440, 90+(150*(i-3))))
+                ## planet number
+                num = textFont.render(f"Planet {i+1}",True,(255,255,255))
+                screen.blit(num,(600,100+(150*(i-3))))
+                ## days
+                day = textFont.render(f"Days: {days[i]}",True,(255,255,255))
+                screen.blit(day,(600,135+(150*(i-3))))
+                ## distance
+                distance1 = textFont.render("Distance:",True,(255,255,255))
+                screen.blit(distance1,(600,165+(150*(i-3))))
+                distance2 = textFont.render(f"{distances[i+1]}",True,(255,255,255))
+                screen.blit(distance2,(600,185+(150*(i-3))))
+
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -417,44 +453,6 @@ def deletePage(screen,days,functions,distances):
         textSurface = baseFont.render(Input, True, (255, 255, 255))
         screen.blit(textSurface, (inputRect.x+10, inputRect.y+1))
         inputRect.w = max(50, textSurface.get_width()+10)  ## set textfield width
-
-
-
-        ######## DRAWING PLANETS #########
-        textFont = pygame.font.Font('Fredoka-Regular.ttf',20)
-        ## run through planets and draw onto screen
-        for i in range(len(functions)):
-            if i < 3:   ## if it is up to the 3rd planet, write on 1st column
-                ## planet icon
-                screen.blit(imgs[functions[i]], (85, 90+(150*(i))))
-                ## planet number
-                num = textFont.render(f"Planet {i+1}",True,(255,255,255))
-                screen.blit(num,(250,100+(150*(i))))
-                ## days
-                day = textFont.render(f"Days: {days[i-1]}",True,(255,255,255))
-                screen.blit(day,(250,135+(150*(i))))
-                ## distance
-                distance1 = textFont.render("Distance:",True,(255,255,255))
-                screen.blit(distance1,(250,165+(150*(i))))
-                distance2 = textFont.render(f"{distances[i+1]}",True,(255,255,255))
-                screen.blit(distance2,(250,185+(150*(i))))
-                
-            else:   ## if it is after the 3rd planet, write on 2nd column
-                ## planet icon
-                screen.blit(imgs[functions[i]], (440, 90+(150*(i-3))))
-                ## planet number
-                num = textFont.render(f"Planet {i+1}",True,(255,255,255))
-                screen.blit(num,(600,100+(150*(i-3))))
-                ## days
-                day = textFont.render(f"Days: {days[i-1]}",True,(255,255,255))
-                screen.blit(day,(600,135+(150*(i-3))))
-                ## distance
-                distance1 = textFont.render("Distance:",True,(255,255,255))
-                screen.blit(distance1,(600,165+(150*(i-3))))
-                distance2 = textFont.render(f"{distances[i+1]}",True,(255,255,255))
-                screen.blit(distance2,(600,185+(150*(i-3))))
-            
-        
 
         ## updating screen
         pygame.display.update()
