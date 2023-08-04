@@ -1,5 +1,5 @@
 import turtle, time
-from Challenge_6_Inner_Planets_Functions_Spirograph import *
+from Challenge_6_Planets_Functions_Spirograph import *
 
 ### BASIC VARIABLES ###
 
@@ -66,7 +66,7 @@ t = 0
 
 
 ## Input Planets
-planets = [input("Choose an inner planet: ").lower(), input("Choose another inner planet: ").lower()]
+planets = [input("Choose a planet: ").lower(), input("Choose another planet: ").lower()]
 
 
 ## set starting position & distance from sun for drawing orbits

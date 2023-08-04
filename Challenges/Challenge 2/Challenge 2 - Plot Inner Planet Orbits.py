@@ -15,7 +15,7 @@ pens = [sunPen,mercuryPen,venusPen,earthPen,marsPen]
 
 turtle.bgcolor("#000000") # color screen black
 
-functions[0](0,0,pens[0]) # draw sun
+functions[0](-10,0,pens[0]) # draw sun
 
 for pen in pens:
     ## set all pen colors as white
