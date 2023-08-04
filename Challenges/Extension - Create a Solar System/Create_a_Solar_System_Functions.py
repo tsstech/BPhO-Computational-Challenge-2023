@@ -53,7 +53,7 @@ class ImageButton(object):
 ## defining text buttons
 font = pygame.font.Font("FredokaOne-Regular.ttf", 30)  
 
-submit = TextButton(50, 470, 150, 50, ("#84A7BA"), text="Submit")
+submit = TextButton(50, 500, 150, 50, ("#84A7BA"), text="Submit")
 submit2 = TextButton(610, 510, 150, 50, ("#84A7BA"), text="Submit")
 home = TextButton(330, 520, 150, 50, ("#84A7BA"), text="Home")
 home2 =TextButton(30, 20, 150, 50, ("#84A7BA"), text="Home")
@@ -159,16 +159,20 @@ def daysPage(screen):
     ## writing instructions to input orbit length
     instructionsFont = pygame.font.Font('FredokaOne-Regular.ttf',50)
     instructions = instructionsFont.render("How long is the orbit in days?",True,(255,255,255))
-    screen.blit(instructions,(50,50))
+    screen.blit(instructions,(50,35))
 
     ## writing instructions to input distance from sun
     instructionsFont = pygame.font.Font('FredokaOne-Regular.ttf',50)
-    instructions = instructionsFont.render("How far is the planet?",True,(255,255,255))
-    screen.blit(instructions,(50,270))
+    instructions = instructionsFont.render("How far is the planet from",True,(255,255,255))
+    screen.blit(instructions,(50,245))
+
+    instructionsFont = pygame.font.Font('FredokaOne-Regular.ttf',50)
+    instructions = instructionsFont.render("the Sun?",True,(255,255,255))
+    screen.blit(instructions,(50,300))
 
     ## input text box
-    daysInputRect = pygame.Rect(50, 140, 190, 52)
-    distanceInputRect = pygame.Rect(50, 360, 190, 52)
+    daysInputRect = pygame.Rect(50, 125, 190, 52)
+    distanceInputRect = pygame.Rect(50, 390, 190, 52)
 
     ## input text & font
     baseFont = pygame.font.Font('FredokaOne-Regular.ttf',40)
