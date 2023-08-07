@@ -93,8 +93,8 @@ starbtn = ImageButton(530,450,90,127,starimg)
 
 ## Function for 1st page to create a new planet
 ## This page lets user select an icon for the planet
-def newPlanetPage(screen):
-    screen.fill("#303655") ## clear screen
+def newPlanetPage(screen,bg):
+    screen.fill(bg) ## clear screen
     
     running = True
     while running: 
@@ -153,8 +153,8 @@ def newPlanetPage(screen):
 
 ## Function for 2nd page to create a new planet
 ## This page lets user input orbit length & distance from sun for the planet
-def daysPage(screen):
-    screen.fill("#303655") ## clear screen
+def daysPage(screen,bg):
+    screen.fill(bg) ## clear screen
 
     ## writing instructions to input orbit length
     instructionsFont = pygame.font.Font('FredokaOne-Regular.ttf',50)
@@ -265,8 +265,8 @@ def daysPage(screen):
 
 
 ## Function for page to display all created planets
-def showPlanetsPage(screen,days,functions,distances):
-    screen.fill("#303655") ## clear screen
+def showPlanetsPage(screen,bg,days,functions,distances):
+    screen.fill(bg) ## clear screen
 
     ## writing page title
     titleFont = pygame.font.Font('FredokaOne-Regular.ttf',50)
@@ -335,8 +335,8 @@ def showPlanetsPage(screen,days,functions,distances):
 
 
 ## Function for page to delete planets
-def deletePage(screen,days,functions,distances):
-    screen.fill("#303655") ## clear screen
+def deletePage(screen,bg,days,functions,distances):
+    screen.fill(bg) ## clear screen
 
     ## writing page title
     titleFont = pygame.font.Font('FredokaOne-Regular.ttf',50)
@@ -457,3 +457,14 @@ def deletePage(screen,days,functions,distances):
         ## updating screen
         pygame.display.update()
 
+def settingsPage(screen,bg):    
+    screen.fill(bg) ## clear screen
+
+    ## writing page title
+    titleFont = pygame.font.Font('FredokaOne-Regular.ttf',50)
+    title = titleFont.render("Settings",True,(255,255,255))
+    screen.blit(title,(300,17))
+
+    while True:
+        ## updating screen
+        pygame.display.update()

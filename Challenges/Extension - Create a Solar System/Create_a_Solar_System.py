@@ -62,19 +62,19 @@ while running:
         if event.type == pygame.MOUSEBUTTONDOWN:
 
             if showPlanets.isOver(pos):
-                showPlanetsPage(screen,days,functionNames,distance)
+                showPlanetsPage(screen,backgroundColor,days,functionNames,distance)
 
             elif newPlanet.isOver(pos):
-                function, funcName = newPlanetPage(screen)
+                function, funcName = newPlanetPage(screen,backgroundColor)
                 functions.append(function)
                 functionNames.append(funcName)
                 
-                day, dist = daysPage(screen)
+                day, dist = daysPage(screen,backgroundColor)
                 days.append(day)
                 distance.append(dist)
 
             elif delete.isOver(pos):
-                deleteIndex = deletePage(screen,days,functionNames,distance)
+                deleteIndex = deletePage(screen,backgroundColor,days,functionNames,distance)
                 if deleteIndex != None:
                     days.pop(deleteIndex-1)
                     distance.pop(deleteIndex)
@@ -84,6 +84,9 @@ while running:
             elif draw.isOver(pos):
                 from Drawing_Solar_System import *
                 drawSolarSystem(functions,days,distance)
+                
+            elif settings.isOver(pos):
+                settingsPage(screen,backgroundColor)
 
     
     ## updating screen
