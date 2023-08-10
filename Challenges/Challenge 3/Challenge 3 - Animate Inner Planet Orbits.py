@@ -78,7 +78,7 @@ while True:
 
     ## update screen and pause
     screen.update()
-    time.sleep(0.1)
+    time.sleep(0.04)
     
 
     
