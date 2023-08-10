@@ -1,7 +1,7 @@
 import turtle
-from Challenge_2_Drawing_Planets_Functions import *
+from planet_icon_functions import *
 
-### BASIC VARIABLES ###
+### DECLARE BASIC LIST VARIABLES ###
 
 # holds distance of planets from sun in miles 
 distance =[0,3.598e7,6.724e7,9.296e7,1.416e8,4.838e8,8.909e8,1.784e9,2.793e9]
@@ -13,7 +13,7 @@ functions = [sun,mercury,venus,earth,mars,jupiter,saturn,uranus,neptune]
 pens = [sunPen,mercuryPen,venusPen,earthPen,marsPen,jupiterPen,saturnPen,uranusPen,neptunePen]
 
 
-
+## Screen Setup
 turtle.bgcolor("#000000") # color screen black
 
 
@@ -23,7 +23,10 @@ for pen in pens:
     ## hide all pens
     pen.hideturtle()
 
-## draw the orbits
+
+
+##### DRAW ORBITS #####
+## loop through lists
 for i in range(1,9):
     ## set position to draw orbit
     pens[i].penup()

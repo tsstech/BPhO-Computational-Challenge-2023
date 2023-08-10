@@ -1,5 +1,5 @@
 import turtle, time
-from Challenge_6_Planets_Functions_Spirograph import *
+from planet_icon_functions import *
 
 ### BASIC VARIABLES ###
 

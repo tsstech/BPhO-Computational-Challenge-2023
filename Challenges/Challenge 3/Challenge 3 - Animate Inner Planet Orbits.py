@@ -1,5 +1,5 @@
 import turtle, time
-from Challenge_3_Drawing_Planets_Functions_Animation import *
+from planet_icon_functions import *
 
 ### BASIC VARIABLES ###
 
