@@ -26,6 +26,8 @@ settings = TextButton(245, 420, 320, 50, ("#84A7BA"), text="Settings")
 ######## BASIC VARIABLES #######
 backgroundColor = "#303655"
 titleFont = pygame.font.Font('FredokaOne-Regular.ttf',50)
+simLen = [1,0]    # Simulation length - [yrs,days]
+music = None
 
 
 ######## VARIABLES FOR TURTLE ########
@@ -86,10 +88,10 @@ while running:
                 drawSolarSystem(functions,days,distance)
                 
             elif settings.isOver(pos):
-                settingsPage(screen,backgroundColor)
+                settingsPage(screen,backgroundColor,simLen,music)
 
     
-    ## updating screen
-    pygame.display.update()
+        ## updating screen
+        pygame.display.update()
 
 
