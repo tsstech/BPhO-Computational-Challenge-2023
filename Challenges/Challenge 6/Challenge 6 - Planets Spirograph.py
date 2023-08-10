@@ -1,7 +1,7 @@
 import turtle, time
 from planet_icon_functions import *
 
-### BASIC VARIABLES ###
+### BASIC DICTIONARY VARIABLES ###
 
 # holds distance of planets from sun in miles 
 distance = {"mercury" : 3.598e7,
@@ -77,9 +77,7 @@ for i in range(2):
     orbitPens[i].pendown()
 
 
-
-
-## Animation
+######## ANIMATION #########
 iterations = 0
 while True:
 
@@ -113,8 +111,3 @@ while True:
     screen.update()
     time.sleep(0.1)
     
-
-    
-
-
-
