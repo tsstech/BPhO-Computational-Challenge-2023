@@ -55,8 +55,12 @@ font = pygame.font.Font("FredokaOne-Regular.ttf", 30)
 
 submit = TextButton(50, 500, 150, 50, ("#84A7BA"), text="Submit")
 submit2 = TextButton(610, 520, 150, 50, ("#84A7BA"), text="Submit")
+submit3 = TextButton(50, 500, 150, 50, ("#84A7BA"), text="Submit")
+
 home = TextButton(330, 520, 150, 50, ("#84A7BA"), text="Home")
 home2 =TextButton(30, 20, 150, 50, ("#84A7BA"), text="Home")
+home3 = TextButton(330, 520, 150, 50, ("#84A7BA"), text="Home")
+
 
 
 ## defining image buttons
@@ -93,8 +97,8 @@ starbtn = ImageButton(530,450,90,127,starimg)
 
 ## Function for 1st page to create a new planet
 ## This page lets user select an icon for the planet
-def newPlanetPage(screen):
-    screen.fill("#303655") ## clear screen
+def newPlanetPage(screen,bg):
+    screen.fill(bg) ## clear screen
     
     running = True
     while running: 
@@ -153,8 +157,8 @@ def newPlanetPage(screen):
 
 ## Function for 2nd page to create a new planet
 ## This page lets user input orbit length & distance from sun for the planet
-def daysPage(screen):
-    screen.fill("#303655") ## clear screen
+def daysPage(screen,bg):
+    screen.fill(bg) ## clear screen
 
     ## writing instructions to input orbit length
     instructionsFont = pygame.font.Font('FredokaOne-Regular.ttf',50)
@@ -265,8 +269,8 @@ def daysPage(screen):
 
 
 ## Function for page to display all created planets
-def showPlanetsPage(screen,days,functions,distances):
-    screen.fill("#303655") ## clear screen
+def showPlanetsPage(screen,bg,days,functions,distances):
+    screen.fill(bg) ## clear screen
 
     ## writing page title
     titleFont = pygame.font.Font('FredokaOne-Regular.ttf',50)
@@ -335,8 +339,8 @@ def showPlanetsPage(screen,days,functions,distances):
 
 
 ## Function for page to delete planets
-def deletePage(screen,days,functions,distances):
-    screen.fill("#303655") ## clear screen
+def deletePage(screen,bg,days,functions,distances):
+    screen.fill(bg) ## clear screen
 
     ## writing page title
     titleFont = pygame.font.Font('FredokaOne-Regular.ttf',50)
@@ -457,3 +461,129 @@ def deletePage(screen,days,functions,distances):
         ## updating screen
         pygame.display.update()
 
+def settingsPage(screen,bg,simulation,music):    
+    screen.fill(bg) ## clear screen
+
+    ## drawing buttons
+    home3.draw(screen)
+    submit3.draw(screen)
+
+    ## writing page title
+    titleFont = pygame.font.Font('FredokaOne-Regular.ttf',50)
+    title = titleFont.render("Settings",True,(255,255,255))
+    screen.blit(title,(300,17))
+
+    ## writing instructions to input distance from sun
+    instructionsFont = pygame.font.Font('FredokaOne-Regular.ttf',50)
+    instructions = instructionsFont.render("Length of",True,(255,255,255))
+    screen.blit(instructions,(140,135))
+    instructionsFont = pygame.font.Font('FredokaOne-Regular.ttf',50)
+    instructions = instructionsFont.render("simulation:",True,(255,255,255))
+    screen.blit(instructions,(125,190))
+
+    instructionsFont = pygame.font.Font('FredokaOne-Regular.ttf',50)
+    instructions = instructionsFont.render("Music",True,(255,255,255))
+    screen.blit(instructions,(490,125))
+
+    ## input text box
+    yrsInputRect = pygame.Rect(90, 270, 190, 52)
+    daysInputRect = pygame.Rect(90, 350, 190, 52)
+    musicInputRect = pygame.Rect(540, 180, 190, 52)
+
+    ## input text & font
+    baseFont = pygame.font.Font('FredokaOne-Regular.ttf',40)
+    yrsInput = str(simulation[0])
+    daysInput = str(simulation[1])
+    musicInput = music
+
+    ## variables that check if user is typing in textbox
+    yrsTyping = False
+    daysTyping = False
+    musicTyping = False
+    
+    running = True
+    while running:
+
+        ## draw input box for years
+        pygame.draw.rect(screen, "#6F90AF", yrsInputRect)
+  
+        ## writing user text as they type
+        textSurface = baseFont.render(yrsInput, True, (255, 255, 255))
+        screen.blit(textSurface, (yrsInputRect.x+10, yrsInputRect.y+3))
+        yrsInputRect.w = max(100, textSurface.get_width()+10)  ## set textfield width
+
+        textSurface = baseFont.render("years", True, (255, 255, 255))
+        screen.blit(textSurface, (yrsInputRect.x+200, yrsInputRect.y+3))
+
+
+        ## draw input box for days
+        pygame.draw.rect(screen, "#6F90AF", daysInputRect)
+  
+        ## writing user text as they type
+        textSurface = baseFont.render(daysInput, True, (255, 255, 255))
+        screen.blit(textSurface, (daysInputRect.x+10, daysInputRect.y+3))
+        daysInputRect.w = max(100, textSurface.get_width()+10)  ## set textfield width
+
+        textSurface = baseFont.render("days", True, (255, 255, 255))
+        screen.blit(textSurface, (daysInputRect.x+200, daysInputRect.y+3))
+
+
+        ## draw input box for music
+        pygame.draw.rect(screen, "#6F90AF", musicInputRect)
+  
+        ## writing user text as they type
+        textSurface = baseFont.render(musicInput, True, (255, 255, 255))
+        screen.blit(textSurface, (musicInputRect.x+10, musicInputRect.y+3))
+        yrsInputRect.w = max(100, textSurface.get_width()+10)  ## set textfield width
+
+        textSurface = baseFont.render("mu", True, (255, 255, 255))
+        screen.blit(textSurface, (musicInputRect.x+200, musicInputRect.y+3))
+
+
+        
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
+
+            pos = pygame.mouse.get_pos()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if yrsInputRect.collidepoint(pos): # if user clicks on textfield for years
+                    yrsTyping = True                    # set typing to true
+                else:
+                    yrsTyping = False
+                    
+                if daysInputRect.collidepoint(pos): # if user clicks on textfield for days
+                    daysTyping = True                    # set typing to true
+                else:
+                    daysTyping = False
+
+                if submit.isOver(pos):      # if user clicks submit button
+                    return int(daysInput), int(yrsInput+"000000")   # return days & distance
+
+
+            if yrsTyping == True:      # if user is typing in years textfield
+                if event.type == pygame.KEYDOWN:
+                    # Check for backspace
+                    if event.key == pygame.K_BACKSPACE:
+          
+                        # get text input from 0 to -1 i.e. end.
+                        yrsInput = yrsInput[:-1]
+          
+                    # Unicode standard is used for string formation
+                    else:
+                        yrsInput += event.unicode
+                        
+            elif daysTyping == True:      # if user is typing in days textfield
+                if event.type == pygame.KEYDOWN:
+                    # Check for backspace
+                    if event.key == pygame.K_BACKSPACE:
+          
+                        # get text input from 0 to -1 i.e. end.
+                        daysInput = daysInput[:-1]
+          
+                    # Unicode standard is used for string formation
+                    else:
+                        daysInput += event.unicode
+        
+        ## updating screen
+        pygame.display.update()

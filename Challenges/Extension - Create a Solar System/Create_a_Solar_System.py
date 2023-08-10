@@ -26,6 +26,8 @@ settings = TextButton(245, 420, 320, 50, ("#84A7BA"), text="Settings")
 ######## BASIC VARIABLES #######
 backgroundColor = "#303655"
 titleFont = pygame.font.Font('FredokaOne-Regular.ttf',50)
+simLen = [1,0]    # Simulation length - [yrs,days]
+music = None
 
 
 ######## VARIABLES FOR TURTLE ########
@@ -62,19 +64,19 @@ while running:
         if event.type == pygame.MOUSEBUTTONDOWN:
 
             if showPlanets.isOver(pos):
-                showPlanetsPage(screen,days,functionNames,distance)
+                showPlanetsPage(screen,backgroundColor,days,functionNames,distance)
 
             elif newPlanet.isOver(pos):
-                function, funcName = newPlanetPage(screen)
+                function, funcName = newPlanetPage(screen,backgroundColor)
                 functions.append(function)
                 functionNames.append(funcName)
                 
-                day, dist = daysPage(screen)
+                day, dist = daysPage(screen,backgroundColor)
                 days.append(day)
                 distance.append(dist)
 
             elif delete.isOver(pos):
-                deleteIndex = deletePage(screen,days,functionNames,distance)
+                deleteIndex = deletePage(screen,backgroundColor,days,functionNames,distance)
                 if deleteIndex != None:
                     days.pop(deleteIndex-1)
                     distance.pop(deleteIndex)
@@ -84,9 +86,12 @@ while running:
             elif draw.isOver(pos):
                 from Drawing_Solar_System import *
                 drawSolarSystem(functions,days,distance)
+                
+            elif settings.isOver(pos):
+                settingsPage(screen,backgroundColor,simLen,music)
 
     
-    ## updating screen
-    pygame.display.update()
+        ## updating screen
+        pygame.display.update()
 
 
