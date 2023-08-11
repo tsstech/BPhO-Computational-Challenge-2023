@@ -1,4 +1,5 @@
 import pygame, sys
+from pygame import mixer
 from Drawing_Planets_Functions import *
 from Create_a_Solar_System_Functions import *
  
@@ -10,7 +11,6 @@ screen = pygame.display.set_mode((800,600))
 
 # title & icon
 pygame.display.set_caption("Create a Solar System")        # displaying title
-
 
 
 ## defining text buttons for homepage
@@ -27,7 +27,8 @@ settings = TextButton(245, 420, 320, 50, ("#84A7BA"), text="Settings")
 backgroundColor = "#303655"
 titleFont = pygame.font.Font('FredokaOne-Regular.ttf',50)
 simLen = [1,0]    # Simulation length - [yrs,days]
-music = None
+music = "4"
+musicFiles =["track1.mp3", "track2.mp3", "track3.mp3", None]
 
 
 ######## VARIABLES FOR TURTLE ########
@@ -85,11 +86,17 @@ while running:
                 
             elif draw.isOver(pos):
                 from Drawing_Solar_System import *
-                drawSolarSystem(functions,days,distance)
+                length = int((simLen[0]*36)+((round(simLen[1]+10))/10))
+                drawSolarSystem(functions,days,distance,length)
                 
             elif settings.isOver(pos):
-                settingsPage(screen,backgroundColor,simLen,music)
-
+                simLen,music = settingsPage(screen,backgroundColor,simLen,music)
+                ## play music
+                if int(music) < 4:                                        
+                    mixer.music.load(musicFiles[int(music)-1])
+                    mixer.music.play(-1)
+                else:
+                    mixer.music.stop() 
     
         ## updating screen
         pygame.display.update()
