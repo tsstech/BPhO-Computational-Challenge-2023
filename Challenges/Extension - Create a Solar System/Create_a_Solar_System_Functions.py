@@ -59,7 +59,6 @@ submit3 = TextButton(50, 500, 150, 50, ("#84A7BA"), text="Submit")
 
 home = TextButton(330, 520, 150, 50, ("#84A7BA"), text="Home")
 home2 =TextButton(30, 20, 150, 50, ("#84A7BA"), text="Home")
-home3 = TextButton(330, 520, 150, 50, ("#84A7BA"), text="Home")
 
 
 
@@ -425,8 +424,6 @@ def deletePage(screen,bg,days,functions,distances):
 
             pos = pygame.mouse.get_pos()
             if event.type == pygame.MOUSEBUTTONDOWN:
-                if home2.isOver(pos):    ## if home button is clicked 
-                    return None
 
                 ######### CHECKING IF USER IS GIVING INPUT #######
                 if inputRect.collidepoint(pos): # if user clicks on textfield
@@ -465,7 +462,6 @@ def settingsPage(screen,bg,simulation,music):
     screen.fill(bg) ## clear screen
 
     ## drawing buttons
-    home3.draw(screen)
     submit3.draw(screen)
 
     ## writing page title
@@ -473,7 +469,7 @@ def settingsPage(screen,bg,simulation,music):
     title = titleFont.render("Settings",True,(255,255,255))
     screen.blit(title,(300,17))
 
-    ## writing instructions to input distance from sun
+    ## writing instructions to input length of simulation
     instructionsFont = pygame.font.Font('FredokaOne-Regular.ttf',50)
     instructions = instructionsFont.render("Length of",True,(255,255,255))
     screen.blit(instructions,(140,135))
@@ -481,14 +477,31 @@ def settingsPage(screen,bg,simulation,music):
     instructions = instructionsFont.render("simulation:",True,(255,255,255))
     screen.blit(instructions,(125,190))
 
+    ## writing instructions to input music
     instructionsFont = pygame.font.Font('FredokaOne-Regular.ttf',50)
-    instructions = instructionsFont.render("Music",True,(255,255,255))
-    screen.blit(instructions,(490,125))
+    instructions = instructionsFont.render("Music:",True,(255,255,255))
+    screen.blit(instructions,(490,155))
+
+    instructionsFont = pygame.font.Font('Fredoka-Regular.ttf',35)
+    instructions = instructionsFont.render("1. Track 1",True,(255,255,255))
+    screen.blit(instructions,(490,220))
+
+    instructionsFont = pygame.font.Font('Fredoka-Regular.ttf',35)
+    instructions = instructionsFont.render("2. Track 2",True,(255,255,255))
+    screen.blit(instructions,(490,260))
+
+    instructionsFont = pygame.font.Font('Fredoka-Regular.ttf',35)
+    instructions = instructionsFont.render("3. Track 3",True,(255,255,255))
+    screen.blit(instructions,(490,300))
+
+    instructionsFont = pygame.font.Font('Fredoka-Regular.ttf',35)
+    instructions = instructionsFont.render("4. None",True,(255,255,255))
+    screen.blit(instructions,(490,340))
 
     ## input text box
     yrsInputRect = pygame.Rect(90, 270, 190, 52)
     daysInputRect = pygame.Rect(90, 350, 190, 52)
-    musicInputRect = pygame.Rect(540, 180, 190, 52)
+    musicInputRect = pygame.Rect(650, 155, 50, 52)
 
     ## input text & font
     baseFont = pygame.font.Font('FredokaOne-Regular.ttf',40)
@@ -536,10 +549,6 @@ def settingsPage(screen,bg,simulation,music):
         screen.blit(textSurface, (musicInputRect.x+10, musicInputRect.y+3))
         yrsInputRect.w = max(100, textSurface.get_width()+10)  ## set textfield width
 
-        textSurface = baseFont.render("mu", True, (255, 255, 255))
-        screen.blit(textSurface, (musicInputRect.x+200, musicInputRect.y+3))
-
-
         
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -547,6 +556,10 @@ def settingsPage(screen,bg,simulation,music):
 
             pos = pygame.mouse.get_pos()
             if event.type == pygame.MOUSEBUTTONDOWN:
+                
+                if submit3.isOver(pos) == True:  ## if submit button is clicked
+                    return [int(yrsInput),int(daysInput)],musicInput
+                
                 if yrsInputRect.collidepoint(pos): # if user clicks on textfield for years
                     yrsTyping = True                    # set typing to true
                 else:
@@ -557,8 +570,10 @@ def settingsPage(screen,bg,simulation,music):
                 else:
                     daysTyping = False
 
-                if submit.isOver(pos):      # if user clicks submit button
-                    return int(daysInput), int(yrsInput+"000000")   # return days & distance
+                if musicInputRect.collidepoint(pos): # if user clicks on textfield for music
+                    musicTyping = True                    # set typing to true
+                else:
+                    musicTyping = False
 
 
             if yrsTyping == True:      # if user is typing in years textfield
@@ -584,6 +599,18 @@ def settingsPage(screen,bg,simulation,music):
                     # Unicode standard is used for string formation
                     else:
                         daysInput += event.unicode
+
+            elif musicTyping == True:      # if user is typing in days textfield
+                if event.type == pygame.KEYDOWN:
+                    # Check for backspace
+                    if event.key == pygame.K_BACKSPACE:
+          
+                        # get text input from 0 to -1 i.e. end.
+                        musicInput = musicInput[:-1]
+          
+                    # Unicode standard is used for string formation
+                    else:
+                        musicInput += event.unicode
         
         ## updating screen
         pygame.display.update()

@@ -2,7 +2,7 @@ import turtle, time
 from Drawing_Planets_Functions import *
 
 
-def drawSolarSystem(functions,days,distance):
+def drawSolarSystem(functions,days,distance,simLen):
     ### BASIC VARIABLES ###
 
     # functions to draw each planet
@@ -57,7 +57,7 @@ def drawSolarSystem(functions,days,distance):
         orbitPens[i].pendown()
 
     ## Animation
-    for i in range(360):
+    for i in range(simLen):
 
         ## write time
         t += 10
