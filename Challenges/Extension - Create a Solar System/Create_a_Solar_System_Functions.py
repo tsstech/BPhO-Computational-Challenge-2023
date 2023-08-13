@@ -433,6 +433,9 @@ def deletePage(screen,bg,days,functions,distances):
 
                 if submit2.isOver(pos):      # if user clicks submit button
                     return int(Input)
+
+                if home2.isOver(pos):
+                        return None
                     
 
             if typing == True:      # if user is typing in days textfield

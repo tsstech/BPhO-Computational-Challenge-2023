@@ -11,7 +11,7 @@ def drawSolarSystem(functions,days,distance,simLen):
     planetPens = [turtle.Turtle() for i in range(len(functions))]
     orbitPens =  [turtle.Turtle() for i in range(len(functions))]
 
-    # orbit length of each planet in earth days, starting with mercury
+    # orbit length of each planet in earth days
     days = days
     speed = [3600/days[i] for i in range(len(days))]
     # holds distance of planets from sun in miles 
